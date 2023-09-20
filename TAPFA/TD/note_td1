@@ -1,0 +1,45 @@
+let creerPredPGQ seuil y = seuil < y;;
+let pred10 = creerPredPGQ 10;;
+let predOcaml = creerPredPGQ "Ocaml";;
+
+let curryfier f a b = f (a,b);;
+curryfier f;;
+
+let decurryfier f (a,b) = f a b;;
+decurryfier (+);;
+
+let rec filtrer p l = match l with 
+    | [] -> []
+    | x :: l' -> if p then x :: filtrer p l' else filtrer p l';;
+
+let rec qqsoit l p = match l with 
+    | [] -> true
+    | x :: l' -> p  x && qqsoit l' p;;
+
+let rec existe l p = match l with 
+    | [] -> false
+    | x :: l' -> p x || existe l' p;;
+
+let rec map f l = match l with 
+    | [] -> []
+    | x :: l' -> (f x) :: (map f l');;
+
+let rec mapFiltrer f p l =map f(filtrer p l);;
+
+let applique listeFuns listeArgs = match listeFuns, listeArgs with
+    | [],[] -> []
+    | f::lf, a::la -> f a :: applique lf la
+    |_ -> failwith "liste de taille diff";;
+
+let appliqueListeFonc listeFuns listeArgs = match listeFuns with
+    | [] -> []
+    | f::lf (map f listeArgs) @ appliqueListeFonc lf listeArgs;;
+
+let compte x l = match l with
+    | [] -> 0
+    | e::l' -> (if e=x then l else 0) + (compte x l');;
+    
+let count l elem = compte elem l;;
+
+let count_exemple = count [1;2;2;3;3;3;4;4;4;4];;
+count_exemple 4;;
