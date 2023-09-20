@@ -1,0 +1,10 @@
+TP 3 Sécurité informatique
+
+clé de chiffrement : nombre (très) aléatoire
+                      -> attaque possible
+
+mémoire normale : entropie faible
+                : entropie forte
+
+utilité : - admin cloud
+          - attaque physique
